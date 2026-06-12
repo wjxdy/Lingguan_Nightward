@@ -216,6 +216,7 @@ text = "祠堂"
 [node name="VillageSign" type="Area2D" parent="Interactables" unique_id=1572900627]
 position = Vector2(706, 640)
 script = ExtResource("2_interactable")
+lines = PackedStringArray("一块旧村牌钉在牌坊柱上。「名花流村」四个字被人用刀划得稀烂。", "上面用红漆重新写了三个字——", "封门村。")
 
 [node name="C" type="CollisionShape2D" parent="Interactables/VillageSign" unique_id=1344790005]
 shape = SubResource("RectangleShape2D_sign")
@@ -223,6 +224,7 @@ shape = SubResource("RectangleShape2D_sign")
 [node name="BrokenCoffin" type="Area2D" parent="Interactables" unique_id=117702646]
 position = Vector2(462, 862)
 script = ExtResource("2_interactable")
+lines = PackedStringArray("我爹的棺材。棺盖从里面炸开了，木刺全朝着外面。", "四年，我在这里面躺了四年。", "里面那本金字的书，已经化成了灰。像是任务完成了，就走了。")
 
 [node name="C" type="CollisionShape2D" parent="Interactables/BrokenCoffin" unique_id=520663819]
 position = Vector2(-8, -35)
@@ -231,6 +233,7 @@ shape = SubResource("RectangleShape2D_coffin")
 [node name="OldTree" type="Area2D" parent="Interactables" unique_id=134529939]
 position = Vector2(797, 678)
 script = ExtResource("2_interactable")
+lines = PackedStringArray("村口的老槐树，打我记事起就在。", "树上挂满了红布条。以前求平安才挂，一年也就挂三五条。", "现在，挂红的比挂叶的多。")
 
 [node name="C" type="CollisionShape2D" parent="Interactables/OldTree" unique_id=346833109]
 shape = SubResource("RectangleShape2D_tree_area")
@@ -238,6 +241,7 @@ shape = SubResource("RectangleShape2D_tree_area")
 [node name="DryWell" type="Area2D" parent="Interactables" unique_id=1815486263]
 position = Vector2(860, 668)
 script = ExtResource("2_interactable")
+lines = PackedStringArray("井绳还在，桶也还在。", "我往下看了一眼。井是干的，干得发白。", "六月的雨季，井不该是干的。")
 
 [node name="C" type="CollisionShape2D" parent="Interactables/DryWell" unique_id=1711258685]
 shape = SubResource("RectangleShape2D_well_area")

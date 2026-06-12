@@ -68,6 +68,7 @@ shape = SubResource("RectangleShape2D_exit")
 [node name="ClueObject" type="Area2D" parent="." unique_id=1267367764]
 position = Vector2(320, 120)
 script = ExtResource("3_interactable")
+lines = PackedStringArray("里屋的箱子里，叠着师傅下葬那天没穿走的备用寿衣。", "我把袖口的针脚拆开了。", "里面缝着一条黄符，符上的朱砂已经变黑。", "书上说过：符入殓衣，魂不归家。师傅的死，是有人做的局。")
 clue_id = "chen_shroud"
 
 [node name="V" type="Polygon2D" parent="ClueObject" unique_id=1945118884]

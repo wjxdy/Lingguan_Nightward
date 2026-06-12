@@ -3,7 +3,7 @@ class_name Interactable
 ## 通用可调查物：玩家靠近按 E 触发对话，可选地登记一条线索。
 ## 用法：场景里放 Area2D 挂本脚本，在检查器里填 lines / clue_id / one_shot。
 
-@export_multiline var lines: PackedStringArray = []
+@export var lines: PackedStringArray = []
 ## 留空表示纯调查文本；填写则登记线索，id 必须存在于 GameState.CLUE_TEXTS
 @export var clue_id: String = ""
 @export var one_shot := false  ## true 则只能调查一次

@@ -18,6 +18,16 @@ func check(cond: bool, what: String) -> void:
 		failures.append(what)
 		printerr("FAIL: ", what)
 
+func _find_interactables(root: Node) -> Array:
+	var found: Array = []
+	var stack: Array = [root]
+	while not stack.is_empty():
+		var n: Node = stack.pop_back()
+		if n is Area2D and "lines" in n:
+			found.append(n)
+		stack.append_array(n.get_children())
+	return found
+
 func _press_interact() -> void:
 	var ev := InputEventAction.new()
 	ev.action = "interact"
@@ -110,6 +120,16 @@ func _run() -> void:
 		var co: Area2D = inst.get_node_or_null("ClueObject")
 		check(co != null and GameState.CLUE_TEXTS.has(co.clue_id), "clue id valid in " + p)
 		inst.free()
+
+	# 6.5 文案完整性：所有调查物的 lines 不得为空（防编辑器保存丢属性）
+	var text_scenes := ["res://scenes/village.tscn"] + interior_paths
+	for sp in text_scenes:
+		var sn: Node = (load(sp) as PackedScene).instantiate()
+		for node in _find_interactables(sn):
+			if node.name == "XiaZi":
+				continue
+			check(not node.lines.is_empty(), "lines not empty: %s in %s" % [node.name, sp])
+		sn.free()
 
 	# 7. 瞎子：白天隐藏、夜晚可见
 	GameState.reset()
