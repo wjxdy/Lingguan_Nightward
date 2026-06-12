@@ -69,7 +69,8 @@ func _run() -> void:
 	add_child(village)
 	await get_tree().physics_frame
 	var player: CharacterBody2D = village.get_node("Player")
-	check(absf(player.global_position.x - 640.0) < 2.0 and absf(player.global_position.y - 750.0) < 2.0,
+	var default_point: Node2D = village.get_node("SpawnPoints/default")
+	check(player.global_position.distance_to(default_point.global_position) < 2.0,
 			"player spawns at default point")
 	var y0: float = player.global_position.y
 	Input.action_press("move_down")

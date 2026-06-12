@@ -1,24 +1,61 @@
-[gd_scene load_steps=10 format=3]
+[gd_scene load_steps=23 format=3]
 
 [ext_resource type="Script" path="res://scripts/village.gd" id="1_village"]
 [ext_resource type="Script" path="res://scripts/interactable.gd" id="2_interactable"]
 [ext_resource type="Script" path="res://scripts/door.gd" id="3_door"]
 [ext_resource type="PackedScene" path="res://scenes/player.tscn" id="4_player"]
+[ext_resource type="Texture2D" path="res://assets/maps/village.png" id="5_map"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wall_h"]
 size = Vector2(1280, 20)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wall_v"]
-size = Vector2(20, 960)
+size = Vector2(20, 956)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_house"]
-size = Vector2(120, 90)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_citang"]
+size = Vector2(322, 135)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_chen_main"]
+size = Vector2(188, 128)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_chen_wing"]
+size = Vector2(81, 237)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_home"]
+size = Vector2(200, 132)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_zhang"]
+size = Vector2(169, 115)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yizhuang"]
+size = Vector2(272, 177)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gate_l"]
+size = Vector2(32, 94)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gate_r"]
+size = Vector2(38, 94)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tree"]
+size = Vector2(82, 63)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_well"]
+size = Vector2(50, 56)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_door"]
+size = Vector2(48, 16)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sign"]
 size = Vector2(28, 40)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_door"]
-size = Vector2(48, 16)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_coffin"]
+size = Vector2(44, 30)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tree_area"]
+size = Vector2(90, 40)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_well_area"]
+size = Vector2(44, 28)
 
 [node name="Village" type="Node2D"]
 script = ExtResource("1_village")
@@ -26,9 +63,10 @@ script = ExtResource("1_village")
 [node name="Tint" type="CanvasModulate" parent="."]
 color = Color(0.607843, 0.584314, 0.678431, 1)
 
-[node name="Ground" type="Polygon2D" parent="."]
-color = Color(0.290196, 0.290196, 0.258824, 1)
-polygon = PackedVector2Array(0, 0, 1280, 0, 1280, 960, 0, 960)
+[node name="Map" type="Sprite2D" parent="."]
+texture = ExtResource("5_map")
+centered = false
+scale = Vector2(1.25, 1.25)
 
 [node name="Walls" type="StaticBody2D" parent="."]
 
@@ -37,189 +75,188 @@ position = Vector2(640, 10)
 shape = SubResource("RectangleShape2D_wall_h")
 
 [node name="S" type="CollisionShape2D" parent="Walls"]
-position = Vector2(640, 950)
+position = Vector2(640, 946)
 shape = SubResource("RectangleShape2D_wall_h")
 
 [node name="W" type="CollisionShape2D" parent="Walls"]
-position = Vector2(10, 480)
+position = Vector2(10, 478)
 shape = SubResource("RectangleShape2D_wall_v")
 
 [node name="E" type="CollisionShape2D" parent="Walls"]
-position = Vector2(1270, 480)
+position = Vector2(1270, 478)
 shape = SubResource("RectangleShape2D_wall_v")
 
-[node name="Houses" type="Node2D" parent="."]
+[node name="Blocks" type="StaticBody2D" parent="."]
 
-[node name="HomeBlock" type="StaticBody2D" parent="Houses"]
-position = Vector2(240, 380)
+[node name="Citang" type="CollisionShape2D" parent="Blocks"]
+position = Vector2(645, 93)
+shape = SubResource("RectangleShape2D_citang")
 
-[node name="V" type="Polygon2D" parent="Houses/HomeBlock"]
-color = Color(0.419608, 0.356863, 0.290196, 1)
-polygon = PackedVector2Array(-60, -45, 60, -45, 60, 45, -60, 45)
+[node name="ChenMain" type="CollisionShape2D" parent="Blocks"]
+position = Vector2(218, 239)
+shape = SubResource("RectangleShape2D_chen_main")
 
-[node name="C" type="CollisionShape2D" parent="Houses/HomeBlock"]
-shape = SubResource("RectangleShape2D_house")
+[node name="ChenWing" type="CollisionShape2D" parent="Blocks"]
+position = Vector2(84, 294)
+shape = SubResource("RectangleShape2D_chen_wing")
 
-[node name="L" type="Label" parent="Houses/HomeBlock"]
-offset_left = -28.0
-offset_top = -12.0
-offset_right = 40.0
-offset_bottom = 12.0
-text = "自己家"
+[node name="Home" type="CollisionShape2D" parent="Blocks"]
+position = Vector2(637, 328)
+shape = SubResource("RectangleShape2D_home")
 
-[node name="ChenBlock" type="StaticBody2D" parent="Houses"]
-position = Vector2(520, 300)
+[node name="Zhang" type="CollisionShape2D" parent="Blocks"]
+position = Vector2(1046, 219)
+shape = SubResource("RectangleShape2D_zhang")
 
-[node name="V" type="Polygon2D" parent="Houses/ChenBlock"]
-color = Color(0.419608, 0.356863, 0.290196, 1)
-polygon = PackedVector2Array(-60, -45, 60, -45, 60, 45, -60, 45)
+[node name="Yizhuang" type="CollisionShape2D" parent="Blocks"]
+position = Vector2(1026, 488)
+shape = SubResource("RectangleShape2D_yizhuang")
 
-[node name="C" type="CollisionShape2D" parent="Houses/ChenBlock"]
-shape = SubResource("RectangleShape2D_house")
+[node name="GateL" type="CollisionShape2D" parent="Blocks"]
+position = Vector2(565, 622)
+shape = SubResource("RectangleShape2D_gate_l")
 
-[node name="L" type="Label" parent="Houses/ChenBlock"]
-offset_left = -28.0
-offset_top = -12.0
-offset_right = 40.0
-offset_bottom = 12.0
-text = "陈坚家"
+[node name="GateR" type="CollisionShape2D" parent="Blocks"]
+position = Vector2(700, 622)
+shape = SubResource("RectangleShape2D_gate_r")
 
-[node name="ZhangBlock" type="StaticBody2D" parent="Houses"]
-position = Vector2(840, 380)
+[node name="Tree" type="CollisionShape2D" parent="Blocks"]
+position = Vector2(797, 643)
+shape = SubResource("RectangleShape2D_tree")
 
-[node name="V" type="Polygon2D" parent="Houses/ZhangBlock"]
-color = Color(0.419608, 0.356863, 0.290196, 1)
-polygon = PackedVector2Array(-60, -45, 60, -45, 60, 45, -60, 45)
-
-[node name="C" type="CollisionShape2D" parent="Houses/ZhangBlock"]
-shape = SubResource("RectangleShape2D_house")
-
-[node name="L" type="Label" parent="Houses/ZhangBlock"]
-offset_left = -36.0
-offset_top = -12.0
-offset_right = 48.0
-offset_bottom = 12.0
-text = "张老汉家"
-
-[node name="YizhuangBlock" type="StaticBody2D" parent="Houses"]
-position = Vector2(1060, 540)
-
-[node name="V" type="Polygon2D" parent="Houses/YizhuangBlock"]
-color = Color(0.419608, 0.356863, 0.290196, 1)
-polygon = PackedVector2Array(-60, -45, 60, -45, 60, 45, -60, 45)
-
-[node name="C" type="CollisionShape2D" parent="Houses/YizhuangBlock"]
-shape = SubResource("RectangleShape2D_house")
-
-[node name="L" type="Label" parent="Houses/YizhuangBlock"]
-offset_left = -20.0
-offset_top = -12.0
-offset_right = 32.0
-offset_bottom = 12.0
-text = "义庄"
-
-[node name="CitangBlock" type="StaticBody2D" parent="Houses"]
-position = Vector2(640, 140)
-
-[node name="V" type="Polygon2D" parent="Houses/CitangBlock"]
-color = Color(0.419608, 0.356863, 0.290196, 1)
-polygon = PackedVector2Array(-60, -45, 60, -45, 60, 45, -60, 45)
-
-[node name="C" type="CollisionShape2D" parent="Houses/CitangBlock"]
-shape = SubResource("RectangleShape2D_house")
-
-[node name="L" type="Label" parent="Houses/CitangBlock"]
-offset_left = -20.0
-offset_top = -12.0
-offset_right = 32.0
-offset_bottom = 12.0
-text = "祠堂"
+[node name="Well" type="CollisionShape2D" parent="Blocks"]
+position = Vector2(860, 647)
+shape = SubResource("RectangleShape2D_well")
 
 [node name="Doors" type="Node2D" parent="."]
 
 [node name="HomeDoor" type="Area2D" parent="Doors"]
-position = Vector2(240, 432)
+position = Vector2(634, 404)
 script = ExtResource("3_door")
 target_scene = "res://scenes/interiors/home.tscn"
 spawn = "default"
-
-[node name="V" type="Polygon2D" parent="Doors/HomeDoor"]
-color = Color(0.2, 0.15, 0.1, 1)
-polygon = PackedVector2Array(-24, -8, 24, -8, 24, 8, -24, 8)
 
 [node name="C" type="CollisionShape2D" parent="Doors/HomeDoor"]
 shape = SubResource("RectangleShape2D_door")
 
 [node name="ChenDoor" type="Area2D" parent="Doors"]
-position = Vector2(520, 352)
+position = Vector2(202, 306)
 script = ExtResource("3_door")
 target_scene = "res://scenes/interiors/chen_home.tscn"
 spawn = "default"
-
-[node name="V" type="Polygon2D" parent="Doors/ChenDoor"]
-color = Color(0.2, 0.15, 0.1, 1)
-polygon = PackedVector2Array(-24, -8, 24, -8, 24, 8, -24, 8)
 
 [node name="C" type="CollisionShape2D" parent="Doors/ChenDoor"]
 shape = SubResource("RectangleShape2D_door")
 
 [node name="ZhangDoor" type="Area2D" parent="Doors"]
-position = Vector2(840, 432)
+position = Vector2(1052, 286)
 script = ExtResource("3_door")
 target_scene = "res://scenes/interiors/zhang_home.tscn"
 spawn = "default"
-
-[node name="V" type="Polygon2D" parent="Doors/ZhangDoor"]
-color = Color(0.2, 0.15, 0.1, 1)
-polygon = PackedVector2Array(-24, -8, 24, -8, 24, 8, -24, 8)
 
 [node name="C" type="CollisionShape2D" parent="Doors/ZhangDoor"]
 shape = SubResource("RectangleShape2D_door")
 
 [node name="YizhuangDoor" type="Area2D" parent="Doors"]
-position = Vector2(1060, 592)
+position = Vector2(1021, 581)
 script = ExtResource("3_door")
 target_scene = "res://scenes/interiors/yizhuang.tscn"
 spawn = "default"
-
-[node name="V" type="Polygon2D" parent="Doors/YizhuangDoor"]
-color = Color(0.2, 0.15, 0.1, 1)
-polygon = PackedVector2Array(-24, -8, 24, -8, 24, 8, -24, 8)
 
 [node name="C" type="CollisionShape2D" parent="Doors/YizhuangDoor"]
 shape = SubResource("RectangleShape2D_door")
 
 [node name="CitangDoor" type="Area2D" parent="Doors"]
-position = Vector2(640, 192)
+position = Vector2(638, 196)
 script = ExtResource("3_door")
 target_scene = "res://scenes/interiors/citang.tscn"
 spawn = "default"
 
-[node name="V" type="Polygon2D" parent="Doors/CitangDoor"]
-color = Color(0.2, 0.15, 0.1, 1)
-polygon = PackedVector2Array(-24, -8, 24, -8, 24, 8, -24, 8)
-
 [node name="C" type="CollisionShape2D" parent="Doors/CitangDoor"]
 shape = SubResource("RectangleShape2D_door")
+
+[node name="Labels" type="Node2D" parent="."]
+modulate = Color(1, 1, 1, 0.7)
+
+[node name="HomeL" type="Label" parent="Labels"]
+offset_left = 610.0
+offset_top = 358.0
+offset_right = 660.0
+offset_bottom = 380.0
+text = "自己家"
+
+[node name="ChenL" type="Label" parent="Labels"]
+offset_left = 178.0
+offset_top = 258.0
+offset_right = 228.0
+offset_bottom = 280.0
+text = "陈坚家"
+
+[node name="ZhangL" type="Label" parent="Labels"]
+offset_left = 1018.0
+offset_top = 238.0
+offset_right = 1084.0
+offset_bottom = 260.0
+text = "张老汉家"
+
+[node name="YizhuangL" type="Label" parent="Labels"]
+offset_left = 1004.0
+offset_top = 534.0
+offset_right = 1038.0
+offset_bottom = 556.0
+text = "义庄"
+
+[node name="CitangL" type="Label" parent="Labels"]
+offset_left = 622.0
+offset_top = 148.0
+offset_right = 656.0
+offset_bottom = 170.0
+text = "祠堂"
 
 [node name="Interactables" type="Node2D" parent="."]
 
 [node name="VillageSign" type="Area2D" parent="Interactables"]
-position = Vector2(700, 700)
+position = Vector2(706, 640)
 script = ExtResource("2_interactable")
-lines = PackedStringArray("一块旧村牌。「名花流村」四个字被人用刀划得稀烂。", "上面用红漆重新写了三个字——", "封门村。")
+lines = PackedStringArray("一块旧村牌钉在牌坊柱上。「名花流村」四个字被人用刀划得稀烂。", "上面用红漆重新写了三个字——", "封门村。")
 clue_id = ""
 one_shot = false
-
-[node name="V" type="Polygon2D" parent="Interactables/VillageSign"]
-color = Color(0.541176, 0.541176, 0.478431, 1)
-polygon = PackedVector2Array(-10, -16, 10, -16, 10, 16, -10, 16)
 
 [node name="C" type="CollisionShape2D" parent="Interactables/VillageSign"]
 shape = SubResource("RectangleShape2D_sign")
 
+[node name="BrokenCoffin" type="Area2D" parent="Interactables"]
+position = Vector2(462, 862)
+script = ExtResource("2_interactable")
+lines = PackedStringArray("我爹的棺材。棺盖从里面炸开了，木刺全朝着外面。", "四年，我在这里面躺了四年。", "里面那本金字的书，已经化成了灰。像是任务完成了，就走了。")
+clue_id = ""
+one_shot = false
+
+[node name="C" type="CollisionShape2D" parent="Interactables/BrokenCoffin"]
+shape = SubResource("RectangleShape2D_coffin")
+
+[node name="OldTree" type="Area2D" parent="Interactables"]
+position = Vector2(797, 678)
+script = ExtResource("2_interactable")
+lines = PackedStringArray("村口的老槐树，打我记事起就在。", "树上挂满了红布条。以前求平安才挂，一年也就挂三五条。", "现在，挂红的比挂叶的多。")
+clue_id = ""
+one_shot = false
+
+[node name="C" type="CollisionShape2D" parent="Interactables/OldTree"]
+shape = SubResource("RectangleShape2D_tree_area")
+
+[node name="DryWell" type="Area2D" parent="Interactables"]
+position = Vector2(860, 668)
+script = ExtResource("2_interactable")
+lines = PackedStringArray("井绳还在，桶也还在。", "我往下看了一眼。井是干的，干得发白。", "六月的雨季，井不该是干的。")
+clue_id = ""
+one_shot = false
+
+[node name="C" type="CollisionShape2D" parent="Interactables/DryWell"]
+shape = SubResource("RectangleShape2D_well_area")
+
 [node name="NightGhost" type="Polygon2D" parent="."]
-position = Vector2(760, 120)
+position = Vector2(700, 250)
 visible = false
 color = Color(1, 1, 1, 0.85)
 polygon = PackedVector2Array(-7, -14, 7, -14, 7, 14, -7, 14)
@@ -227,25 +264,25 @@ polygon = PackedVector2Array(-7, -14, 7, -14, 7, 14, -7, 14)
 [node name="SpawnPoints" type="Node2D" parent="."]
 
 [node name="default" type="Marker2D" parent="SpawnPoints"]
-position = Vector2(640, 750)
+position = Vector2(631, 537)
 
 [node name="wake_up" type="Marker2D" parent="SpawnPoints"]
-position = Vector2(640, 880)
+position = Vector2(650, 912)
 
 [node name="from_home" type="Marker2D" parent="SpawnPoints"]
-position = Vector2(240, 470)
+position = Vector2(634, 432)
 
 [node name="from_chen" type="Marker2D" parent="SpawnPoints"]
-position = Vector2(520, 390)
+position = Vector2(202, 334)
 
 [node name="from_zhang" type="Marker2D" parent="SpawnPoints"]
-position = Vector2(840, 470)
+position = Vector2(1052, 314)
 
 [node name="from_yizhuang" type="Marker2D" parent="SpawnPoints"]
-position = Vector2(1060, 630)
+position = Vector2(1021, 610)
 
 [node name="from_citang" type="Marker2D" parent="SpawnPoints"]
-position = Vector2(640, 230)
+position = Vector2(638, 234)
 
 [node name="Player" parent="." instance=ExtResource("4_player")]
-position = Vector2(640, 750)
+position = Vector2(631, 537)
