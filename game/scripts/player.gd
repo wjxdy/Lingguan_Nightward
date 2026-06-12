@@ -6,8 +6,10 @@ const SPEED := 110.0
 var can_move := true
 
 var _nearby: Array[Area2D] = []
+var _facing := "down"
 
 @onready var interact_area: Area2D = $InteractArea
+@onready var anim: AnimatedSprite2D = $Anim
 
 func _ready() -> void:
 	add_to_group("player")
@@ -20,6 +22,15 @@ func _physics_process(_delta: float) -> void:
 	else:
 		velocity = Input.get_vector("move_left", "move_right", "move_up", "move_down") * SPEED
 	move_and_slide()
+	# —— 行走/待机动画 ——
+	if velocity.length() > 1.0:
+		if absf(velocity.x) > absf(velocity.y):
+			_facing = "right" if velocity.x > 0.0 else "left"
+		else:
+			_facing = "down" if velocity.y > 0.0 else "up"
+		anim.play("walk_" + _facing)
+	else:
+		anim.play("idle_" + _facing)
 
 func _unhandled_input(event: InputEvent) -> void:
 	if not event.is_action_pressed("interact"):
