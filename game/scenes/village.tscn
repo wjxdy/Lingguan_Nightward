@@ -145,7 +145,7 @@ script = ExtResource("3_door")
 target_scene = "res://scenes/interiors/chen_home.tscn"
 
 [node name="C" type="CollisionShape2D" parent="Doors/ChenDoor" unique_id=1347310291]
-position = Vector2(7, -23)
+position = Vector2(7, 33)
 shape = SubResource("RectangleShape2D_door")
 
 [node name="ZhangDoor" type="Area2D" parent="Doors" unique_id=1934442847]
@@ -260,7 +260,7 @@ position = Vector2(650, 912)
 position = Vector2(634, 432)
 
 [node name="from_chen" type="Marker2D" parent="SpawnPoints" unique_id=1566744990]
-position = Vector2(211, 309)
+position = Vector2(211, 342)
 
 [node name="from_zhang" type="Marker2D" parent="SpawnPoints" unique_id=1506139133]
 position = Vector2(1052, 314)
