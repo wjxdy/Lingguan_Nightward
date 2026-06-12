@@ -1,8 +1,8 @@
-[gd_scene load_steps=10 format=3]
+[gd_scene format=3 uid="uid://cwp4srdc4dq0j"]
 
-[ext_resource type="Script" path="res://scripts/interior.gd" id="1_interior"]
-[ext_resource type="Script" path="res://scripts/door.gd" id="2_door"]
-[ext_resource type="Script" path="res://scripts/interactable.gd" id="3_interactable"]
+[ext_resource type="Script" uid="uid://rl87cwobk183" path="res://scripts/interior.gd" id="1_interior"]
+[ext_resource type="Script" uid="uid://cdtnunctbu7an" path="res://scripts/door.gd" id="2_door"]
+[ext_resource type="Script" uid="uid://cjj1qqee0bewr" path="res://scripts/interactable.gd" id="3_interactable"]
 [ext_resource type="PackedScene" path="res://scenes/player.tscn" id="4_player"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wall_n"]
@@ -20,69 +20,68 @@ size = Vector2(80, 16)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_clue"]
 size = Vector2(24, 24)
 
-[node name="ChenHome" type="Node2D"]
+[node name="ChenHome" type="Node2D" unique_id=1749955897]
 script = ExtResource("1_interior")
 
-[node name="Tint" type="CanvasModulate" parent="."]
+[node name="Tint" type="CanvasModulate" parent="." unique_id=71655560]
 color = Color(0.721569, 0.698039, 0.768627, 1)
 
-[node name="Floor" type="Polygon2D" parent="."]
+[node name="Floor" type="Polygon2D" parent="." unique_id=535492796]
 color = Color(0.352941, 0.309804, 0.270588, 1)
 polygon = PackedVector2Array(80, 40, 560, 40, 560, 320, 80, 320)
 
-[node name="Walls" type="StaticBody2D" parent="."]
+[node name="Walls" type="StaticBody2D" parent="." unique_id=1291728632]
 
-[node name="N" type="CollisionShape2D" parent="Walls"]
+[node name="N" type="CollisionShape2D" parent="Walls" unique_id=540499227]
 position = Vector2(320, 48)
 shape = SubResource("RectangleShape2D_wall_n")
 
-[node name="W" type="CollisionShape2D" parent="Walls"]
+[node name="W" type="CollisionShape2D" parent="Walls" unique_id=284091535]
 position = Vector2(88, 180)
 shape = SubResource("RectangleShape2D_wall_side")
 
-[node name="E" type="CollisionShape2D" parent="Walls"]
+[node name="E" type="CollisionShape2D" parent="Walls" unique_id=1310721277]
 position = Vector2(552, 180)
 shape = SubResource("RectangleShape2D_wall_side")
 
-[node name="S1" type="CollisionShape2D" parent="Walls"]
+[node name="S1" type="CollisionShape2D" parent="Walls" unique_id=2027971018]
 position = Vector2(180, 312)
 shape = SubResource("RectangleShape2D_wall_s")
 
-[node name="S2" type="CollisionShape2D" parent="Walls"]
+[node name="S2" type="CollisionShape2D" parent="Walls" unique_id=557603716]
 position = Vector2(460, 312)
 shape = SubResource("RectangleShape2D_wall_s")
 
-[node name="ExitDoor" type="Area2D" parent="."]
+[node name="ExitDoor" type="Area2D" parent="." unique_id=705598277]
 position = Vector2(320, 336)
 script = ExtResource("2_door")
 target_scene = "res://scenes/village.tscn"
 spawn = "from_chen"
 
-[node name="V" type="Polygon2D" parent="ExitDoor"]
+[node name="V" type="Polygon2D" parent="ExitDoor" unique_id=44425631]
 color = Color(0.15, 0.13, 0.12, 1)
 polygon = PackedVector2Array(-40, -8, 40, -8, 40, 8, -40, 8)
 
-[node name="C" type="CollisionShape2D" parent="ExitDoor"]
+[node name="C" type="CollisionShape2D" parent="ExitDoor" unique_id=1346522183]
 shape = SubResource("RectangleShape2D_exit")
 
-[node name="ClueObject" type="Area2D" parent="."]
+[node name="ClueObject" type="Area2D" parent="." unique_id=1267367764]
 position = Vector2(320, 120)
 script = ExtResource("3_interactable")
-lines = PackedStringArray("里屋的箱子里，叠着师傅下葬那天没穿走的备用寿衣。", "我把袖口的针脚拆开了。", "里面缝着一条黄符，符上的朱砂已经变黑。", "书上说过：符入殓衣，魂不归家。师傅的死，是有人做的局。")
 clue_id = "chen_shroud"
-one_shot = false
 
-[node name="V" type="Polygon2D" parent="ClueObject"]
+[node name="V" type="Polygon2D" parent="ClueObject" unique_id=1945118884]
 color = Color(0.788235, 0.705882, 0.345098, 1)
 polygon = PackedVector2Array(-10, -10, 10, -10, 10, 10, -10, 10)
 
-[node name="C" type="CollisionShape2D" parent="ClueObject"]
+[node name="C" type="CollisionShape2D" parent="ClueObject" unique_id=911540364]
+position = Vector2(-1, 0)
 shape = SubResource("RectangleShape2D_clue")
 
-[node name="SpawnPoints" type="Node2D" parent="."]
+[node name="SpawnPoints" type="Node2D" parent="." unique_id=367242888]
 
-[node name="default" type="Marker2D" parent="SpawnPoints"]
+[node name="default" type="Marker2D" parent="SpawnPoints" unique_id=367135451]
 position = Vector2(320, 290)
 
-[node name="Player" parent="." instance=ExtResource("4_player")]
+[node name="Player" parent="." unique_id=309555405 instance=ExtResource("4_player")]
 position = Vector2(320, 290)
