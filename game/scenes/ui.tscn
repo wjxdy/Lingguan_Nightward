@@ -1,0 +1,55 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/ui.gd" id="1_ui"]
+
+[node name="Ui" type="CanvasLayer"]
+script = ExtResource("1_ui")
+
+[node name="Prompt" type="Label" parent="."]
+offset_left = 250.0
+offset_top = 294.0
+offset_right = 390.0
+offset_bottom = 318.0
+text = "E 调查"
+horizontal_alignment = 1
+
+[node name="DialoguePanel" type="PanelContainer" parent="."]
+offset_left = 20.0
+offset_top = 270.0
+offset_right = 620.0
+offset_bottom = 350.0
+
+[node name="Margin" type="MarginContainer" parent="DialoguePanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 12
+
+[node name="DialogueLabel" type="Label" parent="DialoguePanel/Margin"]
+layout_mode = 2
+custom_minimum_size = Vector2(556, 44)
+autowrap_mode = 3
+
+[node name="JournalPanel" type="PanelContainer" parent="."]
+offset_left = 80.0
+offset_top = 40.0
+offset_right = 560.0
+offset_bottom = 320.0
+
+[node name="JMargin" type="MarginContainer" parent="JournalPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="JList" type="VBoxContainer" parent="JournalPanel/JMargin"]
+layout_mode = 2
+
+[node name="JTitle" type="Label" parent="JournalPanel/JMargin/JList"]
+layout_mode = 2
+text = "线索 · 笔记（Tab 关闭）"
+
+[node name="JEntries" type="VBoxContainer" parent="JournalPanel/JMargin/JList"]
+layout_mode = 2
