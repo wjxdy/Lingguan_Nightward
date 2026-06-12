@@ -1,11 +1,23 @@
-[gd_scene load_steps=21 format=3]
+[gd_scene format=3 uid="uid://dn644dor13cuc"]
 
-[ext_resource type="Script" path="res://scripts/player.gd" id="1_player"]
-[ext_resource type="Texture2D" path="res://assets/sprites/mingtong_walk_aligned.png" id="2_sheet"]
+[ext_resource type="Script" uid="uid://cj8gf3vodagdi" path="res://scripts/player.gd" id="1_player"]
+[ext_resource type="Texture2D" uid="uid://di7y5vanx5u0o" path="res://assets/sprites/mingtong_walk_aligned.png" id="2_sheet"]
 
 [sub_resource type="AtlasTexture" id="at_down_0"]
 atlas = ExtResource("2_sheet")
 region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="at_left_0"]
+atlas = ExtResource("2_sheet")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="at_right_0"]
+atlas = ExtResource("2_sheet")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="at_up_0"]
+atlas = ExtResource("2_sheet")
+region = Rect2(0, 96, 32, 32)
 
 [sub_resource type="AtlasTexture" id="at_down_1"]
 atlas = ExtResource("2_sheet")
@@ -19,10 +31,6 @@ region = Rect2(64, 0, 32, 32)
 atlas = ExtResource("2_sheet")
 region = Rect2(96, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="at_left_0"]
-atlas = ExtResource("2_sheet")
-region = Rect2(0, 64, 32, 32)
-
 [sub_resource type="AtlasTexture" id="at_left_1"]
 atlas = ExtResource("2_sheet")
 region = Rect2(32, 64, 32, 32)
@@ -35,10 +43,6 @@ region = Rect2(64, 64, 32, 32)
 atlas = ExtResource("2_sheet")
 region = Rect2(96, 64, 32, 32)
 
-[sub_resource type="AtlasTexture" id="at_right_0"]
-atlas = ExtResource("2_sheet")
-region = Rect2(0, 32, 32, 32)
-
 [sub_resource type="AtlasTexture" id="at_right_1"]
 atlas = ExtResource("2_sheet")
 region = Rect2(32, 32, 32, 32)
@@ -50,10 +54,6 @@ region = Rect2(64, 32, 32, 32)
 [sub_resource type="AtlasTexture" id="at_right_3"]
 atlas = ExtResource("2_sheet")
 region = Rect2(96, 32, 32, 32)
-
-[sub_resource type="AtlasTexture" id="at_up_0"]
-atlas = ExtResource("2_sheet")
-region = Rect2(0, 96, 32, 32)
 
 [sub_resource type="AtlasTexture" id="at_up_1"]
 atlas = ExtResource("2_sheet")
@@ -170,32 +170,35 @@ animations = [{
 "speed": 8.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_body"]
-size = Vector2(14, 16)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_g2els"]
+radius = 12.0
+height = 54.0
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_interact"]
-radius = 26.0
+[sub_resource type="CircleShape2D" id="CircleShape2D_qhqgy"]
+radius = 32.01562
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" unique_id=512932212]
 script = ExtResource("1_player")
 
-[node name="Anim" type="AnimatedSprite2D" parent="."]
-position = Vector2(0, -4)
+[node name="Anim" type="AnimatedSprite2D" parent="." unique_id=1075862898]
+position = Vector2(0, -2)
+scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_walk")
-animation = &"idle_down"
+animation = &"idle_up"
 autoplay = "idle_down"
 
-[node name="Shape" type="CollisionShape2D" parent="."]
-position = Vector2(0, 4)
-shape = SubResource("RectangleShape2D_body")
+[node name="Shape" type="CollisionShape2D" parent="." unique_id=924633432]
+position = Vector2(-1, -2)
+shape = SubResource("CapsuleShape2D_g2els")
 
-[node name="InteractArea" type="Area2D" parent="."]
+[node name="InteractArea" type="Area2D" parent="." unique_id=887327242]
 monitorable = false
 
-[node name="IShape" type="CollisionShape2D" parent="InteractArea"]
-shape = SubResource("CircleShape2D_interact")
+[node name="IShape" type="CollisionShape2D" parent="InteractArea" unique_id=1103308171]
+position = Vector2(-1, -2)
+shape = SubResource("CircleShape2D_qhqgy")
 
-[node name="Camera" type="Camera2D" parent="."]
+[node name="Camera" type="Camera2D" parent="." unique_id=275032991]
 limit_left = 0
 limit_top = 0
 limit_right = 1280

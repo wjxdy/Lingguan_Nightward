@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://hiwy1swb3nkr" path="res://scripts/village.gd" id="1_village"]
 [ext_resource type="Script" uid="uid://cjj1qqee0bewr" path="res://scripts/interactable.gd" id="2_interactable"]
 [ext_resource type="Script" uid="uid://cdtnunctbu7an" path="res://scripts/door.gd" id="3_door"]
-[ext_resource type="PackedScene" path="res://scenes/player.tscn" id="4_player"]
+[ext_resource type="PackedScene" uid="uid://dn644dor13cuc" path="res://scenes/player.tscn" id="4_player"]
 [ext_resource type="Texture2D" uid="uid://bdgw5xvhhckgl" path="res://assets/maps/village.png" id="5_map"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wall_h"]
@@ -22,7 +22,7 @@ size = Vector2(188, 128)
 size = Vector2(111.5, 236.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_home"]
-size = Vector2(200, 132)
+size = Vector2(196, 121)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_zhang"]
 size = Vector2(169, 115)
@@ -49,7 +49,7 @@ size = Vector2(48, 16)
 size = Vector2(28, 40)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_coffin"]
-size = Vector2(44, 30)
+size = Vector2(88, 36)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tree_area"]
 size = Vector2(90, 40)
@@ -64,7 +64,7 @@ script = ExtResource("1_village")
 color = Color(0.607843, 0.584314, 0.678431, 1)
 
 [node name="Map" type="Sprite2D" parent="." unique_id=1163916939]
-position = Vector2(1.9999999, 0.99999994)
+position = Vector2(2.9999962, 0.99999905)
 scale = Vector2(1.25, 1.25)
 texture = ExtResource("5_map")
 centered = false
@@ -102,7 +102,7 @@ position = Vector2(91.25, 306.75)
 shape = SubResource("RectangleShape2D_chen_wing")
 
 [node name="Home" type="CollisionShape2D" parent="Blocks" unique_id=2109398474]
-position = Vector2(637, 328)
+position = Vector2(639, 328.5)
 shape = SubResource("RectangleShape2D_home")
 
 [node name="Zhang" type="CollisionShape2D" parent="Blocks" unique_id=1825710001]
@@ -132,11 +132,12 @@ shape = SubResource("RectangleShape2D_well")
 [node name="Doors" type="Node2D" parent="." unique_id=1980482221]
 
 [node name="HomeDoor" type="Area2D" parent="Doors" unique_id=2139169565]
-position = Vector2(634, 404)
+position = Vector2(638, 367)
 script = ExtResource("3_door")
 target_scene = "res://scenes/interiors/home.tscn"
 
 [node name="C" type="CollisionShape2D" parent="Doors/HomeDoor" unique_id=227198862]
+position = Vector2(1, 27)
 shape = SubResource("RectangleShape2D_door")
 
 [node name="ChenDoor" type="Area2D" parent="Doors" unique_id=754476893]
@@ -177,10 +178,10 @@ shape = SubResource("RectangleShape2D_door")
 modulate = Color(1, 1, 1, 0.7)
 
 [node name="HomeL" type="Label" parent="Labels" unique_id=655660185]
-offset_left = 610.0
-offset_top = 358.0
-offset_right = 660.0
-offset_bottom = 380.0
+offset_left = 743.0
+offset_top = 335.0
+offset_right = 793.0
+offset_bottom = 359.0
 text = "自己家"
 
 [node name="ChenL" type="Label" parent="Labels" unique_id=1982045649]
@@ -216,32 +217,29 @@ text = "祠堂"
 [node name="VillageSign" type="Area2D" parent="Interactables" unique_id=1572900627]
 position = Vector2(706, 640)
 script = ExtResource("2_interactable")
-lines = PackedStringArray("一块旧村牌钉在牌坊柱上。「名花流村」四个字被人用刀划得稀烂。", "上面用红漆重新写了三个字——", "封门村。")
 
 [node name="C" type="CollisionShape2D" parent="Interactables/VillageSign" unique_id=1344790005]
 shape = SubResource("RectangleShape2D_sign")
 
 [node name="BrokenCoffin" type="Area2D" parent="Interactables" unique_id=117702646]
-position = Vector2(462, 862)
+position = Vector2(463, 861)
 script = ExtResource("2_interactable")
-lines = PackedStringArray("我爹的棺材。棺盖从里面炸开了，木刺全朝着外面。", "四年，我在这里面躺了四年。", "里面那本金字的书，已经化成了灰。像是任务完成了，就走了。")
 
 [node name="C" type="CollisionShape2D" parent="Interactables/BrokenCoffin" unique_id=520663819]
-position = Vector2(-8, -35)
+position = Vector2(-84, -6)
 shape = SubResource("RectangleShape2D_coffin")
 
 [node name="OldTree" type="Area2D" parent="Interactables" unique_id=134529939]
-position = Vector2(797, 678)
+position = Vector2(795, 692)
 script = ExtResource("2_interactable")
-lines = PackedStringArray("村口的老槐树，打我记事起就在。", "树上挂满了红布条。以前求平安才挂，一年也就挂三五条。", "现在，挂红的比挂叶的多。")
 
 [node name="C" type="CollisionShape2D" parent="Interactables/OldTree" unique_id=346833109]
+position = Vector2(-16, 3)
 shape = SubResource("RectangleShape2D_tree_area")
 
 [node name="DryWell" type="Area2D" parent="Interactables" unique_id=1815486263]
 position = Vector2(860, 668)
 script = ExtResource("2_interactable")
-lines = PackedStringArray("井绳还在，桶也还在。", "我往下看了一眼。井是干的，干得发白。", "六月的雨季，井不该是干的。")
 
 [node name="C" type="CollisionShape2D" parent="Interactables/DryWell" unique_id=1711258685]
 shape = SubResource("RectangleShape2D_well_area")
@@ -258,10 +256,10 @@ polygon = PackedVector2Array(-7, -14, 7, -14, 7, 14, -7, 14)
 position = Vector2(631, 537)
 
 [node name="wake_up" type="Marker2D" parent="SpawnPoints" unique_id=1174374409]
-position = Vector2(650, 912)
+position = Vector2(432, 898)
 
 [node name="from_home" type="Marker2D" parent="SpawnPoints" unique_id=9371923]
-position = Vector2(634, 432)
+position = Vector2(637, 430)
 
 [node name="from_chen" type="Marker2D" parent="SpawnPoints" unique_id=1566744990]
 position = Vector2(211, 342)
